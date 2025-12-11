@@ -60,12 +60,12 @@ Note, we do not make progress in the producer finding messages it sent.
 
 ### Bug 2 - Overloaded causes topic transfer
 
-I've had a lot more trouble reproducing this one, though I've seen it at least once.
+I've had a lot more trouble reproducing this one with the simplified repro code, through I can trigger it with a pulsar-admin command often enough. 
 
-1. In a third terminal `docker compose exec code bash`
-    a) `RUST_LOG=INFO TEST_CASE=PRODUCER cargo run --release`
+Setup the steady state of producer and consumer.
 
-Repeat step 1 until you overload a pulsar broker and cause a topic transfer.
+1. `docker compose exec broker-1 bash`
+    a) `pulsar-admin topics unload persistent://example/delivery/notifications`
 
 If you trigger it, you should see the same internal logs from your consumer:
 

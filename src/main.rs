@@ -108,7 +108,8 @@ async fn spam_deliveries(pool: Pool<RedisConnectionManager>) {
                 let send_future = match producer.send_non_blocking(topic, request).await {
                     Ok(send_future) => send_future,
                     Err(e) => {
-                        println!("Error sending delivery ({e:?}). Trying again in a minute");
+                        println!("Error sending delivery ({e:?}). Trying again in a second");
+                        tokio::time::sleep(Duration::from_secs(1)).await;
                         continue;
                     }
                 };
@@ -118,7 +119,8 @@ async fn spam_deliveries(pool: Pool<RedisConnectionManager>) {
                         break;
                     }
                     Err(e) => {
-                        println!("Error sending delivery ({e:?}). Trying again in a minute");
+                        println!("Error sending delivery ({e:?}). Trying again in a second");
+                        tokio::time::sleep(Duration::from_secs(1)).await;
                         continue;
                     }
                 }
