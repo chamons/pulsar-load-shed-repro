@@ -73,6 +73,7 @@ I've had a lot more trouble reproducing this one with the simplified repro code,
 Setup the steady state of producer and consumer.
 
 1. `docker compose exec broker-1 bash`
+
     a) `pulsar-admin topics unload persistent://example/delivery/notifications`
 
 If you trigger it, you should see the same internal logs from your consumer:
