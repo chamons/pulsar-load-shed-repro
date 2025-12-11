@@ -4,14 +4,22 @@
 
 1. docker compose up -d
 2. `docker compose exec broker-1 bash`
+   
     a) Copy the six commands in ./script/setup_partitions and run them
+   
     b) Exit prompt
+
 3. Check the logs for the bookies and brokers to make sure they are started up correctly. 
-3. `docker compose exec code bash`
+4. `docker compose exec code bash`
+
     a) `apt-get update && apt install -y protobuf-compiler`
+   
     b) `RUST_LOG=INFO TEST_CASE=CONSUMER cargo run --release`
+   
     c) Wait for `Running Consumer` line
-3. In a second terminal `docker compose exec code bash`
+   
+5. In a second terminal `docker compose exec code bash`
+
     a) `RUST_LOG=INFO TEST_CASE=PRODUCER cargo run --release`
 
 This will get you a steady state producer and consumer. The producer sends 400 messages at a time to one of a few random topics, and then polls for completion on a shared Redis. 
