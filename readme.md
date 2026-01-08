@@ -1,5 +1,7 @@
 # Pulsar Load Shedding Issue Repro
 
+This repository is a repro case for https://github.com/streamnative/pulsar-rs/pull/379 which has now been fixed.
+
 ## Steps to Reproduce
 
 1. docker compose up -d
